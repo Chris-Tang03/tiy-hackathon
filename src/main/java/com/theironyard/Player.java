@@ -1,8 +1,5 @@
 package com.theironyard;
 
-/**
- * Created by forestnewark on 4/6/17.
- */
 
 public class Player {
 

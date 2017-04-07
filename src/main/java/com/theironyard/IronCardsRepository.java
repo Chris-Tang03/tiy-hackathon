@@ -2,9 +2,7 @@ package com.theironyard;
 
 import java.sql.*;
 
-/**
- * Created by forestnewark on 4/7/17.
- */
+
 public class IronCardsRepository {
 
     private Connection conn;
