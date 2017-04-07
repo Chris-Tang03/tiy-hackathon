@@ -157,7 +157,7 @@ SELECT pg_catalog.setval('assignment_assignmentid_seq', 1, false);
 -- Data for Name: questions; Type: TABLE DATA; Schema: public; Owner: forestnewark
 --
 
-COPY questions (questionid, question, answer) FROM stdin;
+COPY questions (questionid, question, correctAnswer) FROM stdin;
 \.
 
 
