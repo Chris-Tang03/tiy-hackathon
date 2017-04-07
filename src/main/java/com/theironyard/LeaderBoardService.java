@@ -12,9 +12,14 @@ public class LeaderBoardService {
 
     private IronCardsRepository repository;
 
+
+
     public LeaderBoardService(IronCardsRepository repo){
         this.repository = repo;
     }
+
+
+
 
     //Provides a list of all animals currently in the database
     public ArrayList<LeaderBoard> getLeaderBoard() throws SQLException {
