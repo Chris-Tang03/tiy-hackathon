@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8"/>
     <title>Title</title>
 </head>
 <body>
@@ -11,6 +11,33 @@
 <p>Player Time: <span th:text="${playertime}">100</span></p>
 <p>Player Skill: <span th:text="${playerskill}">10</span></p>
 <hr>
-<h2 id = "gameplayArea">GamePlay</h2>
+<h3 id="assignmentArea">Assignment Area</h3>
+<p id ="AssignmentName" th:text="${assignmentname}">Assignment Name Here</p>
+<p id = "AssignmentTime" th:text="${assignmenttime}">Assignment Time Here</p>
+<hr>
+<h3 id="cardArea">Card Area</h3>
+<form>
+    <form>
+        <input type="radio" name="gender" value="card1"/>
+        <span th:text="${card1name}">[Card1Name]</span>
+        <span th:text="${card1skill}"> [Card1Skill] </span>
+        <span th:text="${card1time}">[Card1Time]</span><br>
+
+        <input type="radio" name="gender" value="card2"/>
+        <span th:text="${card2name}">[Card2Name]</span>
+        <span th:text="${card2skill}"> [Card2Skill] </span>
+        <span th:text="${card2time}">[Card2Time]</span><br>
+
+        <input type="radio" name="gender" value="card3"/>
+        <span th:text="${card3name}">[Card3Name]</span>
+        <span th:text="${card3skill}"> [Card3Skill] </span>
+        <span th:text="${card3time}">[Card3Time]</span><br>
+
+        <button type="submit">Submit</button>
+        <button type="submit">Train</button>
+    </form>
+</form>
+
+
 </body>
 </html>
