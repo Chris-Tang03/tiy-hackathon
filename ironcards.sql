@@ -60,7 +60,7 @@ SET default_with_oids = false;
 
 CREATE TABLE assignment (
     assignmentid integer NOT NULL,
-    name character varying(40) NOT NULL,
+    name character varying(100) NOT NULL,
     "time" integer NOT NULL,
     points integer NOT NULL
 );
@@ -90,6 +90,40 @@ ALTER SEQUENCE assignment_assignmentid_seq OWNED BY assignment.assignmentid;
 
 
 --
+-- Name: leaderboard; Type: TABLE; Schema: public; Owner: Cwolf
+--
+
+CREATE TABLE leaderboard (
+    leaderboardid integer NOT NULL,
+    username character varying(30) NOT NULL,
+    score integer NOT NULL
+);
+
+
+ALTER TABLE leaderboard OWNER TO "Cwolf";
+
+--
+-- Name: leaderboard_leaderboardid_seq; Type: SEQUENCE; Schema: public; Owner: Cwolf
+--
+
+CREATE SEQUENCE leaderboard_leaderboardid_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE leaderboard_leaderboardid_seq OWNER TO "Cwolf";
+
+--
+-- Name: leaderboard_leaderboardid_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: Cwolf
+--
+
+ALTER SEQUENCE leaderboard_leaderboardid_seq OWNED BY leaderboard.leaderboardid;
+
+
+--
 -- Name: questions; Type: TABLE; Schema: public; Owner: Cwolf
 --
 
@@ -105,40 +139,6 @@ CREATE TABLE questions (
 
 
 ALTER TABLE questions OWNER TO "Cwolf";
-
---
--- Name: questions_assignment; Type: TABLE; Schema: public; Owner: Cwolf
---
-
-CREATE TABLE questions_assignment (
-    questions_assignment_id integer NOT NULL,
-    questionid integer NOT NULL,
-    assignmentid integer NOT NULL
-);
-
-
-ALTER TABLE questions_assignment OWNER TO "Cwolf";
-
---
--- Name: questions_assignment_questions_assignment_id_seq; Type: SEQUENCE; Schema: public; Owner: Cwolf
---
-
-CREATE SEQUENCE questions_assignment_questions_assignment_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
-ALTER TABLE questions_assignment_questions_assignment_id_seq OWNER TO "Cwolf";
-
---
--- Name: questions_assignment_questions_assignment_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: Cwolf
---
-
-ALTER SEQUENCE questions_assignment_questions_assignment_id_seq OWNED BY questions_assignment.questions_assignment_id;
-
 
 --
 -- Name: questions_questionid_seq; Type: SEQUENCE; Schema: public; Owner: Cwolf
@@ -169,17 +169,17 @@ ALTER TABLE ONLY assignment ALTER COLUMN assignmentid SET DEFAULT nextval('assig
 
 
 --
+-- Name: leaderboard leaderboardid; Type: DEFAULT; Schema: public; Owner: Cwolf
+--
+
+ALTER TABLE ONLY leaderboard ALTER COLUMN leaderboardid SET DEFAULT nextval('leaderboard_leaderboardid_seq'::regclass);
+
+
+--
 -- Name: questions questionid; Type: DEFAULT; Schema: public; Owner: Cwolf
 --
 
 ALTER TABLE ONLY questions ALTER COLUMN questionid SET DEFAULT nextval('questions_questionid_seq'::regclass);
-
-
---
--- Name: questions_assignment questions_assignment_id; Type: DEFAULT; Schema: public; Owner: Cwolf
---
-
-ALTER TABLE ONLY questions_assignment ALTER COLUMN questions_assignment_id SET DEFAULT nextval('questions_assignment_questions_assignment_id_seq'::regclass);
 
 
 --
@@ -195,6 +195,21 @@ COPY assignment (assignmentid, name, "time", points) FROM stdin;
 --
 
 SELECT pg_catalog.setval('assignment_assignmentid_seq', 1, false);
+
+
+--
+-- Data for Name: leaderboard; Type: TABLE DATA; Schema: public; Owner: Cwolf
+--
+
+COPY leaderboard (leaderboardid, username, score) FROM stdin;
+\.
+
+
+--
+-- Name: leaderboard_leaderboardid_seq; Type: SEQUENCE SET; Schema: public; Owner: Cwolf
+--
+
+SELECT pg_catalog.setval('leaderboard_leaderboardid_seq', 1, false);
 
 
 --
@@ -214,21 +229,6 @@ COPY questions (questionid, question, correctanswer, aanswer, banswer, canswer, 
 
 
 --
--- Data for Name: questions_assignment; Type: TABLE DATA; Schema: public; Owner: Cwolf
---
-
-COPY questions_assignment (questions_assignment_id, questionid, assignmentid) FROM stdin;
-\.
-
-
---
--- Name: questions_assignment_questions_assignment_id_seq; Type: SEQUENCE SET; Schema: public; Owner: Cwolf
---
-
-SELECT pg_catalog.setval('questions_assignment_questions_assignment_id_seq', 1, false);
-
-
---
 -- Name: questions_questionid_seq; Type: SEQUENCE SET; Schema: public; Owner: Cwolf
 --
 
@@ -244,11 +244,11 @@ ALTER TABLE ONLY assignment
 
 
 --
--- Name: questions_assignment questions_assignment_pkey; Type: CONSTRAINT; Schema: public; Owner: Cwolf
+-- Name: leaderboard leaderboard_pkey; Type: CONSTRAINT; Schema: public; Owner: Cwolf
 --
 
-ALTER TABLE ONLY questions_assignment
-    ADD CONSTRAINT questions_assignment_pkey PRIMARY KEY (questions_assignment_id);
+ALTER TABLE ONLY leaderboard
+    ADD CONSTRAINT leaderboard_pkey PRIMARY KEY (leaderboardid);
 
 
 --
@@ -267,10 +267,10 @@ CREATE UNIQUE INDEX assignment_assignmentid_uindex ON assignment USING btree (as
 
 
 --
--- Name: questions_assignment_questions_assignment_id_uindex; Type: INDEX; Schema: public; Owner: Cwolf
+-- Name: leaderboard_leaderboardid_uindex; Type: INDEX; Schema: public; Owner: Cwolf
 --
 
-CREATE UNIQUE INDEX questions_assignment_questions_assignment_id_uindex ON questions_assignment USING btree (questions_assignment_id);
+CREATE UNIQUE INDEX leaderboard_leaderboardid_uindex ON leaderboard USING btree (leaderboardid);
 
 
 --
@@ -278,22 +278,6 @@ CREATE UNIQUE INDEX questions_assignment_questions_assignment_id_uindex ON quest
 --
 
 CREATE UNIQUE INDEX questions_questionid_uindex ON questions USING btree (questionid);
-
-
---
--- Name: questions_assignment questions_assignment_assignment_assignmentid_fk; Type: FK CONSTRAINT; Schema: public; Owner: Cwolf
---
-
-ALTER TABLE ONLY questions_assignment
-    ADD CONSTRAINT questions_assignment_assignment_assignmentid_fk FOREIGN KEY (assignmentid) REFERENCES assignment(assignmentid);
-
-
---
--- Name: questions_assignment questions_assignment_questions_questionid_fk; Type: FK CONSTRAINT; Schema: public; Owner: Cwolf
---
-
-ALTER TABLE ONLY questions_assignment
-    ADD CONSTRAINT questions_assignment_questions_questionid_fk FOREIGN KEY (questionid) REFERENCES questions(questionid);
 
 
 --
