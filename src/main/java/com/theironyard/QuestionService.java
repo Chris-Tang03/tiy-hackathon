@@ -5,12 +5,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Random;
 
-public class questionService {
+public class QuestionService {
 
     private IronCardsRepository ironCardsRepository;
 
     // Ironcards repo constructor
-    public questionService(IronCardsRepository ironCardsRepo) {
+    public QuestionService(IronCardsRepository ironCardsRepo) {
         this.ironCardsRepository = ironCardsRepo;
     }
 
