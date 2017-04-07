@@ -1,9 +1,12 @@
 package com.theironyard;
 
+import org.springframework.stereotype.Component;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Random;
 
+@Component
 public class AssignmentService {
     private IronCardsRepository ironCardsRepository;
 
@@ -14,6 +17,17 @@ public class AssignmentService {
     public int assignmentCount() throws SQLException {
         return ironCardsRepository.getCount("assignment");
     }
+
+    public Assignment getRandomItem() throws SQLException {
+        Assignment assignment = null;
+        ResultSet result = ironCardsRepository.getRandomItem("assignment");
+        while (result.next()) {
+            assignment = new Assignment(result.getString("name"), result.getInt("time"), result.getInt("points"));
+        }
+        return assignment;
+
+    }
+
 
 
     public Assignment getRandomAssignment() throws SQLException {
