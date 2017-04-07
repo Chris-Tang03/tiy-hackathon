@@ -14,42 +14,25 @@ SET check_function_bodies = false;
 SET client_min_messages = warning;
 SET row_security = off;
 
-SET search_path = public, pg_catalog;
-
-ALTER TABLE ONLY public.questions_assignment DROP CONSTRAINT questions_assignment_questions_questionid_fk;
-ALTER TABLE ONLY public.questions_assignment DROP CONSTRAINT questions_assignment_assignment_assignmentid_fk;
-DROP INDEX public.questions_questionid_uindex;
-DROP INDEX public.questions_assignment_questions_assignment_id_uindex;
-DROP INDEX public.assignment_assignmentid_uindex;
-ALTER TABLE ONLY public.questions DROP CONSTRAINT questions_pkey;
-ALTER TABLE ONLY public.questions_assignment DROP CONSTRAINT questions_assignment_pkey;
-ALTER TABLE ONLY public.assignment DROP CONSTRAINT assignment_pkey;
-ALTER TABLE public.questions_assignment ALTER COLUMN questions_assignment_id DROP DEFAULT;
-ALTER TABLE public.questions ALTER COLUMN questionid DROP DEFAULT;
-ALTER TABLE public.assignment ALTER COLUMN assignmentid DROP DEFAULT;
-DROP SEQUENCE public.questions_questionid_seq;
-DROP SEQUENCE public.questions_assignment_questions_assignment_id_seq;
-DROP TABLE public.questions_assignment;
-DROP TABLE public.questions;
-DROP SEQUENCE public.assignment_assignmentid_seq;
-DROP TABLE public.assignment;
-DROP EXTENSION plpgsql;
-DROP SCHEMA public;
 --
--- Name: public; Type: SCHEMA; Schema: -; Owner: postgres
+-- Name: ironcards; Type: DATABASE; Schema: -; Owner: Cwolf
 --
 
-CREATE SCHEMA public;
+CREATE DATABASE ironcards WITH TEMPLATE = template0 ENCODING = 'UTF8' LC_COLLATE = 'en_US.UTF-8' LC_CTYPE = 'en_US.UTF-8';
 
 
-ALTER SCHEMA public OWNER TO postgres;
+ALTER DATABASE ironcards OWNER TO "Cwolf";
 
---
--- Name: SCHEMA public; Type: COMMENT; Schema: -; Owner: postgres
---
+\connect ironcards
 
-COMMENT ON SCHEMA public IS 'standard public schema';
-
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+SET row_security = off;
 
 --
 -- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
