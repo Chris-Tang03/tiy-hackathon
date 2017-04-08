@@ -8,16 +8,25 @@ import java.util.Random;
 
 @Component
 public class AssignmentService {
+
+    //Declare variable for the Repository
     private IronCardsRepository ironCardsRepository;
 
+
+    /**
+     * AssignmentService constructor
+     * @param ironCardsRepository that will make connection to the database
+     */
     public AssignmentService(IronCardsRepository ironCardsRepository) {
         this.ironCardsRepository = ironCardsRepository;
     }
 
-    public int assignmentCount() throws SQLException {
-        return ironCardsRepository.getCount("assignment");
-    }
 
+    /**
+     * Gets a single, random assignment from the repository
+     * @return Assignment
+     * @throws SQLException if connection to database fails
+     */
     public Assignment getRandomItem() throws SQLException {
         Assignment assignment = null;
         ResultSet result = ironCardsRepository.getRandomItem("assignment");
@@ -27,20 +36,5 @@ public class AssignmentService {
         return assignment;
 
     }
-
-
-
-    public Assignment getRandomAssignment() throws SQLException {
-        Random rand = new Random();
-        Assignment assignment = null;
-
-        ResultSet result = ironCardsRepository.getItem("assignment", "assignmentid", rand.nextInt(assignmentCount()) + 1);
-
-        while (result.next()) {
-            assignment = new Assignment(result.getString("name"), result.getInt("time"), result.getInt("points"));
-        }
-        return assignment;
-    }
-
 
 }

@@ -14,16 +14,3 @@ public class HackathonController {
 
 }
 
-
-/*
-
-@RequestMapping("/playgame) {
-        Card car = new card (u383m932
-        GameplayData gpd = new GamePlayData (assignService.randomAssignment(), )
-
-
-
-
-
-
- */

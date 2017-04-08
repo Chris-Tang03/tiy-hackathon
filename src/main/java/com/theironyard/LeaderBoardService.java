@@ -19,8 +19,6 @@ public class LeaderBoardService {
     }
 
 
-
-
     //Provides a list of all animals currently in the database
     public ArrayList<LeaderBoard> getLeaderBoard() throws SQLException {
         ArrayList<LeaderBoard> lb = new ArrayList<>();
