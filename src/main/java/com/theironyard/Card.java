@@ -2,6 +2,7 @@ package com.theironyard;
 
 
 public class Card {
+
     private String cardName;
     private int cardSkill;
     private int cardTime;

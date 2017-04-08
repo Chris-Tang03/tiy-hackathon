@@ -11,33 +11,24 @@ import java.util.Random;
 public class QuestionService {
 
     private IronCardsRepository ironCardsRepository;
+    private Question oldQuestion;
 
-    // Ironcards repo constructor
+
+    /**
+     * Construct the QuestionService
+     * @param ironCardsRepo to connect to the datbase
+     */
     public QuestionService(IronCardsRepository ironCardsRepo) {
         this.ironCardsRepository = ironCardsRepo;
     }
 
 
-
-    //Return a Random Question From Database
-    public int questionCount() throws SQLException {
-        return ironCardsRepository.getCount("questions");
-    }
-
-    public Question getRandomQuestion() throws SQLException {
-        Random rand = new Random();
-        Question question = null;
-
-        ResultSet result = ironCardsRepository.getItem("questions", "questionid", rand.nextInt(questionCount())+1);
-
-        while(result.next()){
-            question = new Question(result.getInt("questionid"), result.getString("question"), result.getString("correctanswer"), result.getString("aanswer"), result.getString("banswer"), result.getString("canswer"), result.getString("danswer"));
-        }
-
-        return question;
-
-    }
-
+    /**
+     * Gets a random Question from the repository
+     * Checks to make sure the question returned is not the same as the last question returned
+     * @return Question
+     * @throws SQLException if connection to database fails
+     */
     public Question getRandomItem() throws SQLException {
         Question question = null;
         ResultSet result = ironCardsRepository.getRandomItem("questions");
@@ -46,7 +37,13 @@ public class QuestionService {
                     result.getInt("questionid"), result.getString("question"), result.getString("correctanswer"), result.getString("aanswer"), result.getString("banswer"), result.getString("canswer"), result.getString("danswer"));
 
         }
-        return question;
+        if(question == oldQuestion) {
+            return getRandomItem();
+        }else {
+            oldQuestion = question;
+            return question;
+        }
+
 
     }
 
