@@ -11,6 +11,7 @@ public class AssignmentService {
 
     //Declare variable for the Repository
     private IronCardsRepository ironCardsRepository;
+    private Assignment oldAssignment;
 
 
     /**
@@ -33,7 +34,15 @@ public class AssignmentService {
         while (result.next()) {
             assignment = new Assignment(result.getString("name"), result.getInt("time"), result.getInt("points"));
         }
-        return assignment;
+
+        if(assignment == oldAssignment){
+            return getRandomItem();
+        }
+        else {
+            oldAssignment = assignment;
+            return assignment;
+        }
+
 
     }
 
