@@ -14,6 +14,7 @@ function setup() {
   computer = loadImage('images/computer.png');
   paper = loadImage('images/paper.png');
   player = new Player();
+  console.log(data);
   // back = loadImage("interface.png");
 }
 
