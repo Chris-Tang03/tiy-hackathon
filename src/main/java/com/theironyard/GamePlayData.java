@@ -1,8 +1,6 @@
 package com.theironyard;
 
-/**
- * Created by forestnewark on 4/7/17.
- */
+
 
 //This might need changed a lot..... (Not sure if this is the correct approach)
 public class GamePlayData {

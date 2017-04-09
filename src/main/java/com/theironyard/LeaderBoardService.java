@@ -4,9 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-/**
- * Created by forestnewark on 4/7/17.
- */
+
 public class LeaderBoardService {
 
 

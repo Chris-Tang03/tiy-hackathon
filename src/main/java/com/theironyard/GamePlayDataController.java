@@ -21,7 +21,7 @@ public class GamePlayDataController {
     public ResponseEntity<GamePlayData> gameData() {
 
         Assignment assignment = new Assignment("AssignmentTestName",10,25);
-        Question question = new Question(1,"What is the meaing of life?","b","No One Know","42","Cake","Music");
+        Question question = new Question(1,"What is the meaning of life?","b","No One Know","42","Cake","Music");
         Card card = new Card("LabTime",5,0);
         GamePlayData gamePlayData = new GamePlayData(assignment,question,card);
         return new ResponseEntity<>(gamePlayData, HttpStatus.OK);
