@@ -34,6 +34,11 @@ public class IronCardsRepository {
         return preparedStatement.executeQuery();
     }
 
+    public void addToLeaderBoard(Player player) throws SQLException {
+        PreparedStatement preparedStatement = conn.prepareStatement("INSERT INTO leaderboard(username, score) VALUES('"+player.getPlayerName()+"','"+player.getScore()+"')");
+        preparedStatement.execute();
+    }
+
 
 
 

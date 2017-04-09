@@ -1,21 +1,24 @@
 package com.theironyard;
 
+import org.springframework.stereotype.Component;
+
 /**
  * Created by forestnewark on 4/8/17.
  */
+@Component
 public class LeaderBoardRow {
 
     private int leaderRank;
     private String name;
-    private int string;
+    private int score;
 
     public LeaderBoardRow(){}
 
 
-    public LeaderBoardRow(int leaderRank, String name, int string) {
+    public LeaderBoardRow(int leaderRank, String name, int score) {
         this.leaderRank = leaderRank;
         this.name = name;
-        this.string = string;
+        this.score = score;
     }
 
     public int getLeaderRank() {
@@ -34,11 +37,11 @@ public class LeaderBoardRow {
         this.name = name;
     }
 
-    public int getString() {
-        return string;
+    public int getScore() {
+        return score;
     }
 
-    public void setString(int string) {
-        this.string = string;
+    public void setScore(int score) {
+        this.score = score;
     }
 }

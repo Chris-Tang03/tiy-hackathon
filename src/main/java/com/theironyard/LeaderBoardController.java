@@ -4,9 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.sql.SQLException;
 
@@ -17,11 +15,15 @@ import java.sql.SQLException;
 public class LeaderBoardController {
 
     final
+    IronCardsRepository ironCardsRepository;
+
+    final
     LeaderBoardService leaderBoardService;
 
     @Autowired
-    public LeaderBoardController(LeaderBoardService leaderBoardService) {
+    public LeaderBoardController(LeaderBoardService leaderBoardService, IronCardsRepository ironCardsRepository) {
         this.leaderBoardService = leaderBoardService;
+        this.ironCardsRepository = ironCardsRepository;
     }
 
 
@@ -32,4 +34,16 @@ public class LeaderBoardController {
 
         return new ResponseEntity<>(leaderBoard, HttpStatus.OK);
     }
+
+    @RequestMapping(value = "/leaderboardadd", method = RequestMethod.POST)
+    public ResponseEntity<Player> addToLeaderBoard(@RequestParam("playerName") String playerName,@RequestParam("score") int score) throws SQLException {
+
+        Player player = new Player(playerName,score);
+
+        ironCardsRepository.addToLeaderBoard(player);
+        return new ResponseEntity<>(player, HttpStatus.OK);
+
+    }
+
+
 }
