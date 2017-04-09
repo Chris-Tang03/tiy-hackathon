@@ -1,32 +1,49 @@
 package com.theironyard;
 
+import org.springframework.stereotype.Component;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Random;
 
+@Component
 public class AssignmentService {
-    private IronCardsRepository ironCardsRepository;
 
+    //Declare variable for the Repository
+    private IronCardsRepository ironCardsRepository;
+    private Assignment oldAssignment;
+
+
+    /**
+     * AssignmentService constructor
+     * @param ironCardsRepository that will make connection to the database
+     */
     public AssignmentService(IronCardsRepository ironCardsRepository) {
         this.ironCardsRepository = ironCardsRepository;
     }
 
-    public int assignmentCount() throws SQLException {
-        return ironCardsRepository.getCount("assignment");
-    }
 
-
-    public Assignment getRandomAssignment() throws SQLException {
-        Random rand = new Random();
+    /**
+     * Gets a single, random assignment from the repository
+     * @return Assignment
+     * @throws SQLException if connection to database fails
+     */
+    public Assignment getRandomItem() throws SQLException {
         Assignment assignment = null;
-
-        ResultSet result = ironCardsRepository.getItem("assignment", "assignmentid", rand.nextInt(assignmentCount()) + 1);
-
+        ResultSet result = ironCardsRepository.getRandomItem("assignment");
         while (result.next()) {
             assignment = new Assignment(result.getString("name"), result.getInt("time"), result.getInt("points"));
         }
-        return assignment;
-    }
 
+        if(assignment == oldAssignment){
+            return getRandomItem();
+        }
+        else {
+            oldAssignment = assignment;
+            return assignment;
+        }
+
+
+    }
 
 }

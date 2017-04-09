@@ -5,18 +5,18 @@ public class Player {
 
     //Properties
     private String playerName;
-    private int points;
-    private int time;
-    private int skill;
+    private int score;
+
 
     //No-Argument Constructor for Spring
     public Player() {}
 
     //Constructor with arguments
-    public Player(String playerName, int time, int skill) {
+    public Player(String playerName, int score) {
         this.playerName = playerName;
-        this.time = time;
-        this.skill = skill;
+        this.score = score;
+
+
     }
 
     public String getPlayerName() {
@@ -27,28 +27,12 @@ public class Player {
         this.playerName = playerName;
     }
 
-    public int getTime() {
-        return time;
+
+    public int getScore() {
+        return score;
     }
 
-    public void setTime(int time) {
-        this.time = time;
-    }
-
-    public int getSkill() {
-        return skill;
-    }
-
-    public void setSkill(int skill) {
-        this.skill = skill;
-    }
-
-
-    public int getPoints() {
-        return points;
-    }
-
-    public void setPoints(int points) {
-        this.points = points;
+    public void setScore(int points) {
+        this.score = points;
     }
 }

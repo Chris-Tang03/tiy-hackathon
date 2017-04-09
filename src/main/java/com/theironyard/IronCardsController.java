@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 
 @Controller
-public class HackathonController {
+public class IronCardsController {
 
     @RequestMapping("/")
     public String setUp(){
@@ -14,16 +14,3 @@ public class HackathonController {
 
 }
 
-
-/*
-
-@RequestMapping("/playgame) {
-        Card car = new card (u383m932
-        GameplayData gpd = new GamePlayData (assignService.randomAssignment(), )
-
-
-
-
-
-
- */
