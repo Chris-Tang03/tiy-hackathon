@@ -3,6 +3,10 @@ var player;
 // var back;
 var computer;
 var paper;
+var data;
+function preload() {
+  data = loadJSON("http://localhost:8080/gamedata");
+}
 function setup() {
   createCanvas(1315*.8,912*.8);
   background(51);
