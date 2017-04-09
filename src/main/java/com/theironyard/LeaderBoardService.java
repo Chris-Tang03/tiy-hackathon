@@ -1,40 +1,41 @@
 package com.theironyard;
 
+import org.springframework.stereotype.Component;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
- * Created by forestnewark on 4/7/17.
+ * Created by forestnewark on 4/8/17.
  */
+@Component
 public class LeaderBoardService {
 
 
-    private IronCardsRepository repository;
+    //Declare variable for the Repository
+    private IronCardsRepository ironCardsRepository;
 
 
-
-    public LeaderBoardService(IronCardsRepository repo){
-        this.repository = repo;
+    /**
+     * constructor
+     * @param ironCardsRepository that will make connection to the database
+     */
+    public LeaderBoardService(IronCardsRepository ironCardsRepository) {
+        this.ironCardsRepository = ironCardsRepository;
     }
 
 
-    //Provides a list of all animals currently in the database
-    public ArrayList<LeaderBoard> getLeaderBoard() throws SQLException {
-        ArrayList<LeaderBoard> lb = new ArrayList<>();
+    public ArrayList<LeaderBoardRow> getLeaderBoard() throws SQLException {
 
-        ResultSet result = this.repository.getAll("leaderboard");
-
-        while(result.next()) {
-            LeaderBoard leaderBoard = new LeaderBoard(
-                    result.getInt("leaderboardid"),
-                    result.getString("username"),
-                    result.getInt("score")
-            );
-            lb.add(leaderBoard);
+        ArrayList<LeaderBoardRow> returnArray = new ArrayList<>();
+        ResultSet result = ironCardsRepository.getAll("leaderboard");
+        while(result.next()){
+            LeaderBoardRow lbr = new LeaderBoardRow(result.getInt("leaderboardid"),result.getString("username"),result.getInt("score"));
+            returnArray.add(lbr);
         }
 
-        return lb;
+        return returnArray;
     }
 
 

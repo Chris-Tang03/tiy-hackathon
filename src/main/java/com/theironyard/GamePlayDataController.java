@@ -36,8 +36,6 @@ public class GamePlayDataController {
     @RequestMapping(value = "/gamedata", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<GamePlayData> gameData() throws SQLException {
 
-        Assignment assignment = new Assignment("AssignmentTestName",10,25);
-        Question question = new Question(1,"What is the meaing of life?","b","No One Know","42","Cake","Music");
         Card card = new Card("LabTime",5,0);
         GamePlayData gamePlayData = new GamePlayData(assignmentService.getRandomItem(),questionService.getRandomItem(),card);
         return new ResponseEntity<>(gamePlayData, HttpStatus.OK);
