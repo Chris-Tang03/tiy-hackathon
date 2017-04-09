@@ -6,10 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-/**
- * Created by forestnewark on 4/8/17.
- */
-@Component
 public class LeaderBoardService {
 
 
