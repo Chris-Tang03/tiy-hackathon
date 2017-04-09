@@ -1,7 +1,10 @@
 package com.theironyard;
 
+import org.springframework.stereotype.Component;
+
 import java.util.Random;
 
+@Component
 public class CardService {
 
     private Random random = new Random();
