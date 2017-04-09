@@ -17,13 +17,15 @@ import java.sql.SQLException;
 @RestController
 public class GamePlayDataController {
 
+    private final CardService cardService;
     private final AssignmentService assignmentService;
     private final QuestionService questionService;
 
     @Autowired
-    public GamePlayDataController(AssignmentService assignmentService, QuestionService questionService) {
+    public GamePlayDataController(AssignmentService assignmentService, QuestionService questionService, CardService cardService) {
         this.assignmentService = assignmentService;
         this.questionService = questionService;
+        this.cardService = cardService;
     }
 
 
@@ -39,7 +41,7 @@ public class GamePlayDataController {
         Assignment assignment = new Assignment("AssignmentTestName",10,25);
         Question question = new Question(1,"What is the meaning of life?","b","No One Know","42","Cake","Music");
         Card card = new Card("LabTime",5,0);
-        GamePlayData gamePlayData = new GamePlayData(assignmentService.getRandomItem(),questionService.getRandomItem(),card);
+        GamePlayData gamePlayData = new GamePlayData(assignmentService.getRandomItem(),questionService.getRandomItem(),cardService.getRandomCard());
         return new ResponseEntity<>(gamePlayData, HttpStatus.OK);
     }
 

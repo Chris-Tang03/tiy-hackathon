@@ -6,6 +6,8 @@ public class CardService {
 
     private Random random = new Random();
 
+    public CardService(){}
+
 
     public Card getRandomCard(){
          return new Card(randomName(),randomSkill(),randomTime());
@@ -21,9 +23,9 @@ public class CardService {
 
     private String randomName() {
         int i = random.nextInt(100) + 1;
-        if(i <= 97){
+        if(i <= 45){
             return "Extension";
-        } else if (i <= 99) {
+        } else if (i <= 95) {
             return "LabTime";
         } else {
             return "Bribe";
