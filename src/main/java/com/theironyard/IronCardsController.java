@@ -12,5 +12,16 @@ public class IronCardsController {
         return "index";
     }
 
+
+    @RequestMapping("/describe")
+    public String describeView(){
+        return "describe";
+    }
+
+    @RequestMapping("game")
+    public String gameView(){
+        return "game";
+    }
+
 }
 

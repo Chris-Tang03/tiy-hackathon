@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
   <head>
     <meta charset="utf-8"/>
     <title>Description</title>
-    <link rel="stylesheet" href="../static/css/styles.css"/>
+    <link rel="stylesheet" th:href="@{/css/styles.css}" href="../static/css/styles.css"/>
   </head>
   <body>
     <section class="content">
       <div class="description">
         <h1>The Iron Cards</h1>
-        <hr>
+        <hr/>
         <p>The Iron Cards is a realistic Iron Yard course simulator. In this game you play the role of an Iron Yard student. Your goal is to complete as many assignments as you can and reach the highest skill level possible.</p>
         <button type="button" name="button"><a href="game.html">Get Started!</a></button>
       </div>
