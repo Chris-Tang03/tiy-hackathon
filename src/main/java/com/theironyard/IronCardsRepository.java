@@ -10,15 +10,19 @@ import java.sql.*;
 public class IronCardsRepository {
 
 
+
     private Connection conn;
 
 
+    @Autowired
     public IronCardsRepository() throws SQLException {
         this.conn = DriverManager.getConnection("jdbc:postgresql://localhost/ironcards");
+
     }
 
     //Returns all values in a table as a ResultSet
     public ResultSet getAll(String tableName) throws SQLException {
+
         // create a prepared statement
         PreparedStatement preparedStatement = conn.prepareStatement("SELECT * " +
                 "FROM " + tableName);
