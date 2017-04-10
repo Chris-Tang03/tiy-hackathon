@@ -41,7 +41,7 @@ public class GamePlayDataController {
         Assignment assignment = new Assignment("AssignmentTestName",10,25);
         Question question = new Question(1,"What is the meaning of life?","b","No One Know","42","Cake","Music");
         Card card = new Card("LabTime",5,0);
-        GamePlayData gamePlayData = new GamePlayData(assignmentService.getRandomItem(),questionService.getRandomItem(),cardService.getRandomCard());
+        GamePlayData gamePlayData = new GamePlayData(assignmentService.getRandomItem(),questionService.getRandomItem(),cardService.getRandomCard(),cardService.getRandomCard(),cardService.getRandomCard(),cardService.getRandomCard(),cardService.getRandomCard());
         return new ResponseEntity<>(gamePlayData, HttpStatus.OK);
     }
 
